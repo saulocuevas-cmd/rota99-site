@@ -440,17 +440,17 @@ section[id] {
 .evento-video iframe {
     max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
     background: var(--card-bg);
 }
 
+/* Correção específica para vídeos verticais no iframe */
 .evento-video iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
+    object-fit: contain;
+    object-position: center;
 }
 
 .evento-video video::-webkit-media-controls {
