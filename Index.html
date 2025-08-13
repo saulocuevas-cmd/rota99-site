@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rota 99 - O melhor do rock de todas as gerações ao vivo</title>
+    <meta name="description" content="Banda cover de rock clássico e moderno. De Led Zeppelin a Charlie Brown Jr., passando por Nirvana, Metallica e muito mais.">
+    <style>
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff6b35;
+    --secondary-color: #f7931e;
+    --accent-color: #ff4757;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #000000;
+    --card-bg: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --border-color: #333333;
+    --gradient-primary: linear-gradient(135deg, #ff6b35, #f7931e);
+    --gradient-secondary: linear-gradient(135deg, #ff4757, #ff6b35);
+    --shadow: 0 8px 32px rgba(255, 107, 53, 0.3);
+    --shadow-hover: 0 12px 40px rgba(255, 107, 53, 0.5);
+    --nav-h: 80px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Fundo global com blur aplicado no <html> cobrindo TUDO */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("background.png") center/cover no-repeat;
+  filter: blur(12px) brightness(0.35);
+  transform: scale(1.12);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Remover qualquer fundo anterior no body */
+body::before { 
+    content: none !important; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.35) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: none !important;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled { 
+    background: rgba(10,10,10,0.5) !important; 
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section - RESPONSIVIDADE TOTAL E CONTEÚDO SEMPRE VISÍVEL */
+.hero {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: clamp(100px, 12vh, 120px) 1rem clamp(40px, 8vh, 80px) 1rem !important;
+    background: transparent !important;
+    position: relative;
+    overflow: visible !important;
+    gap: clamp(12px, 3vh, 24px) !important;
+}
+
+.hero::after { 
+    content: none !important; 
+}
+
+/* Logo perfeitamente centralizado e responsivo */
+.hero-logo {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.hero-logo-img {
+    width: clamp(200px, 25vw, 380px) !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    aspect-ratio: auto !important;
+    filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.5));
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from {
+        filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 50px rgba(255, 107, 53, 0.8));
+    }
+}
+
+/* Conteúdo hero - sempre visível e bem espaçado */
+.hero-content {
+    position: static !important;
+    margin-top: 0 !important;
+    z-index: 2 !important;
+    text-align: center !important;
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5.5vw, 4.5rem) !important;
+    font-weight: 900;
+    margin: 0 0 clamp(8px, 2vh, 16px) 0 !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: clamp(2px, 0.5vw, 4px);
+    animation: glow 2s ease-in-out infinite alternate;
+    line-height: 1.1 !important;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(255, 107, 53, 0.8);
+    }
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.4rem) !important;
+    margin: 0 auto clamp(16px, 4vh, 32px) auto !important;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 68ch !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+}
+
+.hero-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: clamp(8px, 2vw, 16px) !important;
+    margin-top: 0 !important;
+}
+
+/* Botões menores em telas pequenas para caber melhor */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: clamp(8px, 1.5vw, 12px) clamp(14px, 2.5vw, 24px) !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: clamp(0.75rem, 1.4vw, 0.9rem) !important;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background: var(--gradient-secondary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+}
+
+.btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-whatsapp {
+    background: #25d366;
+    color: var(--text-primary);
+}
+
+.btn-whatsapp i {
+    color: var(--text-primary) !important;
+}
+
+.btn-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: var(--text-primary);
+}
+
+.btn-instagram i {
+    color: var(--text-primary) !important;
+}
+
+/* Sections */
+section {
+    padding: 80px 0;
+    background: transparent !important;
+}
+
+section[id] { 
+    scroll-margin-top: calc(var(--nav-h) + 16px); 
+}
+
+/* Sobre Section */
+.sobre-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.sobre-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.membros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.membro {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.membro:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.membro-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--primary-color);
+}
+
+.membro h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.membro p {
+    color: var(--text-secondary);
+}
+
+/* Agenda Section */
+.agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.evento-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.evento-flyer,
+.evento-video {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+}
+
+.flyer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-video video,
+.evento-video iframe {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: var(--card-bg);
+}
+
+/* Correção específica para vídeos verticais no iframe */
+.evento-video iframe {
+    object-fit: contain;
+    object-position: center;
+}
+
+.evento-video video::-webkit-media-controls {
+    display: flex !important;
+}
+
+.evento-video video::-webkit-media-controls-panel {
+    display: flex !important;
+}
+
+.evento-info {
+    padding: 1.5rem;
+}
+
+.evento-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.evento-data,
+.evento-local,
+.evento-horario {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* Galeria Section */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.galeria-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria-item:hover {
+    transform: scale(1.05);
+}
+
+.galeria-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Contato Section */
+.contato-content {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.contato-info {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem;
+}
+
+.contato-item {
+    width: 100%;
+    max-width: 560px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    text-align: left;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.contato-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.contato-header { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    margin-bottom: 8px;
+}
+
+.contato-header i { 
+    font-size: 1.6rem; 
+    color: var(--primary-color);
+}
+
+.contato-item h3 { 
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.contato-detail { 
+    color: var(--text-secondary); 
+    margin-bottom: 14px; 
+}
+
+.contato-item .btn { 
+    align-self: flex-start; 
+}
+
+/* Modal do Flyer */
+.flyer-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.flyer-modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flyer-close {
+    color: var(--text-primary);
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+    z-index: 10001;
+    transition: color 0.3s ease;
+}
+
+.flyer-close:hover,
+.flyer-close:focus {
+    color: var(--primary-color);
+}
+
+#flyerModalImg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: var(--darker-bg);
+    padding: 3rem 0 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.social-link:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.social-link i {
+    font-size: 1.5rem;
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: var(--darker-bg);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Hero responsivo para mobile */
+    .hero {
+        min-height: 100vh !important;
+        padding: 100px 1rem 60px 1rem !important;
+        gap: clamp(8px, 2vh, 16px) !important;
+    }
+
+    .hero-logo-img {
+        width: clamp(180px, 45vw, 280px) !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 3rem) !important;
+        margin-bottom: clamp(6px, 1.5vh, 12px) !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.85rem, 3vw, 1.1rem) !important;
+        margin-bottom: clamp(12px, 3vh, 20px) !important;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(6px, 1.5vw, 12px) !important;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 10px 16px !important;
+        font-size: 0.8rem !important;
+        gap: 4px;
+    }
+
+    .sobre-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .membros {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .contato-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .contato-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .agenda-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Extra pequeno - garantir que tudo cabe */
+    .hero {
+        padding: 90px 0.5rem 50px 0.5rem !important;
+    }
+
+    .hero-logo-img {
+        width: clamp(160px, 50vw, 240px) !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.6rem, 9vw, 2.5rem) !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.8rem, 3.5vw, 1rem) !important;
+    }
+
+    .btn {
+        padding: 8px 12px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .membro-img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Media query específica para laptops/MacBooks (1024-1440px) */
+@media (min-width: 769px) and (max-width: 1440px) {
+    .hero {
+        min-height: 100vh !important;
+        padding: clamp(100px, 10vh, 120px) 1rem clamp(60px, 8vh, 80px) 1rem !important;
+    }
+
+    .hero-logo-img {
+        width: clamp(220px, 22vw, 320px) !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 1.8vw, 1.3rem) !important;
+    }
+
+    .hero-buttons {
+        gap: clamp(8px, 1.5vw, 14px) !important;
+    }
+
+    .btn {
+        padding: clamp(9px, 1.2vw, 11px) clamp(16px, 2.2vw, 20px) !important;
+        font-size: clamp(0.8rem, 1.2vw, 0.85rem) !important;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation - Sistema melhorado sem piscadas */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Elementos que estão inicialmente na viewport não devem ter animação de entrada */
+.no-initial-animation {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Animação suave para elementos que entram gradualmente */
+.stagger-animation {
+    transition-delay: var(--stagger-delay, 0ms);
+}
+
+/* Loading state mais suave */
+body.loading * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+}
+
+body.loaded {
+    animation-duration: initial !important;
+    transition-duration: initial !important;
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="loading">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="#agenda" class="nav-link">Agenda</a></li>
+                <li class="nav-item"><a href="#galeria" class="nav-link">Galeria</a></li>
+                <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-logo">
+            <img src="Assets/Logo_rota99_sem_fundo.png" alt="Rota 99 Logo" class="hero-logo-img">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Rota 99</h1>
+            <p class="hero-subtitle">Clássicos que marcaram época, energia que marca o presente.</p>
+            <div class="hero-buttons">
+                <a href="#agenda" class="btn btn-primary">Ver Agenda de Shows</a>
+                <a href="https://www.instagram.com/bandarota99" target="_blank" class="btn btn-secondary"><i class="fab fa-instagram"></i> Ouça no Instagram</a>
+                <a href="#contato" class="btn btn-accent">Contato para Eventos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre a Banda</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>Somos a Rota 99, uma banda de rock de Salvador, Bahia, que mistura a energia das ondas do nosso litoral com o peso e a atitude do rock'n'roll.
+                    O nome nasceu da fusão entre o espírito lendário da Route 66 🇺🇸 e a nossa estrada de casa, a BA-099 (Estrada do Coco 🌴🌊) — uma rota que respira liberdade, música e paisagens incríveis.</p>
+                    <p>Nosso repertório é uma viagem por décadas e estilos: de Led Zeppelin a Charlie Brown Jr., de Nirvana a Barão Vermelho, passando por Metallica, Pearl Jam e muito mais. No palco, levamos a descontração da praia e a intensidade das grandes guitarras, criando uma conexão única com o público. Para nós, cada show é uma estrada aberta, com destino certo: o poder do rock ao vivo.</p>
+                </div>
+                <div class="membros">
+                    <div class="membro">
+                        <img src="Assets/Saulo_Cuevas.JPG" alt="Saulo Cuevas" class="membro-img">
+                        <h3>🎤 Saulo Cuevas</h3>
+                        <p>Vocais</p>
+                    </div>
+                    <div class="membro">
+                        <img src="Assets/Renato_Santos_Guitarra.JPG" alt="Renato Santos" class="membro-img">
+                        <h3>🎸 Renato Santos</h3>
+                        <p>Guitarra</p>
+                    </div>
+                    <div class="membro">
+                        <img src="Assets/Ricardo_Farias.png" alt="Ricardo Farias" class="membro-img">
+                        <h3>🥁 Ricardo Farias</h3>
+                        <p>Bateria</p>
+                    </div>
+                    <div class="membro">
+                        <img src="Assets/Jorge_cardoso.JPG" alt="Jorge Cardoso" class="membro-img">
+                        <h3>🎸 Jorge Cardoso</h3>
+                        <p>Contra-baixo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda Section -->
+    <section id="agenda" class="agenda">
+        <div class="container">
+            <h2 class="section-title">Agenda de Shows</h2>
+            <div class="agenda-grid">
+                <div class="evento-card" onclick="openFlyerModal('Assets/Flyer_Show_dia_04.09_no_PUB_As_Divas_de_Tio Chico.JPG')">
+                    <div class="evento-flyer">
+                        <img src="Assets/Flyer_Show_dia_04.09_no_PUB_As_Divas_de_Tio Chico.JPG" alt="Flyer Show 04.09" class="flyer-img">
+                    </div>
+                    <div class="evento-info">
+                        <h3>Show no PUB As Divas de Tio Chico</h3>
+                        <p class="evento-data">04 de Setembro</p>
+                        <p class="evento-local">PUB As Divas de Tio Chico</p>
+                        <p class="evento-horario">19:30</p>
+                    </div>
+                </div>
+                
+                <div class="evento-card">
+                    <div class="evento-video">
+                        <iframe 
+                            src="https://drive.google.com/file/d/17rsFE7ovGngCwgvoEKfcCM5BlRy9wPtw/preview" 
+                            width="100%" 
+                            height="200" 
+                            allow="autoplay"
+                            style="border: none; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Apresentação Anterior</h3>
+                        <p>Enter Sandman - Metallica</p>
+                        <p class="evento-local">Evento Particular</p>
+                    </div>
+                </div>
+
+                <div class="evento-card">
+                    <div class="evento-video">
+                        <iframe 
+                            src="https://drive.google.com/file/d/1E-ss1a9Ya-fNBjJx_735DSO7F0g-H0Kc/preview" 
+                            width="100%" 
+                            height="200" 
+                            allow="autoplay"
+                            style="border: none; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Apresentação Anterior</h3>
+                        <p>Man in the Box - Alice In Chains</p>
+                        <p class="evento-local">Ensaio</p>
+                    </div>
+                </div>
+
+                <div class="evento-card">
+                    <div class="evento-video">
+                        <iframe 
+                            src="https://drive.google.com/file/d/1r3MfxmLBw4HLWwZSIGImrlvoPyyLj1TO/preview" 
+                            width="100%" 
+                            height="200" 
+                            allow="autoplay"
+                            style="border: none; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Apresentação Anterior</h3>
+                        <p>Rota 99 no Trio Elétrico</p>
+                        <p class="evento-local">Evento Privado</p>
+                    </div>
+                </div>
+
+                <div class="evento-card">
+                    <div class="evento-video">
+                        <iframe 
+                            src="https://drive.google.com/file/d/1UJAMSNW_0zTHy2ENGAnHpgToJZxRWM8v/preview" 
+                            width="100%" 
+                            height="200" 
+                            allow="autoplay"
+                            style="border: none; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Apresentação Anterior</h3>
+                        <p>Come Together - The Beatles</p>
+                        <p class="evento-local">Evento Particular</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Section -->
+    <section id="galeria" class="galeria">
+        <div class="container">
+            <h2 class="section-title">Galeria</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item"><img src="Assets/Saulo_Cuevas.JPG" alt="Saulo Cuevas" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Renato_Santos.JPG" alt="Renato Santos" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Ricardo_Farias.png" alt="Ricardo Farias" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/ricardo_jorge_system.jpg" alt="Ricardo e Jorge no show do System of a Down" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Jorge_cardoso.JPG" alt="Jorge Cardoso" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Renato_Santos_Guitarra.JPG" alt="Renato Santos na Guitarra" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Integrantes_Rota_99.jpg" alt="Integrantes Rota 99" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Integrantes_Rota_99_2.JPG" alt="Integrantes Rota 99 2" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Ricardo_Farias_evento-privado.jpg" alt="Ricardo Farias em evento privado" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Rota_99_eventoprivado.jpg" alt="Rota 99 em evento privado" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Rota_99_Evento_privado.jpg" alt="Rota 99 em evento privado 2" class="galeria-img"></div>
+                <div class="galeria-item"><img src="Assets/Rota_99_trio_eletrico.JPG" alt="Rota 99 no trio elétrico" class="galeria-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contato-content">
+                <div class="contato-info">
+                    
+                    <!-- WhatsApp -->
+                    <div class="contato-item contato-card">
+                        <div class="contato-header">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp</h3>
+                        </div>
+                        <p class="contato-detail">(71) 98215-8271</p>
+                        <a href="https://wa.me/5571982158271" target="_blank" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Enviar Mensagem
+                        </a>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="contato-item contato-card">
+                        <div class="contato-header">
+                            <i class="fab fa-instagram"></i>
+                            <h3>Instagram</h3>
+                        </div>
+                        <p class="contato-detail">@bandarota99</p>
+                        <a href="https://www.instagram.com/bandarota99" target="_blank" class="btn btn-instagram">
+                            <i class="fab fa-instagram"></i> Seguir
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/bandarota99" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/5571982158271" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Rota 99 - Todos os direitos reservados</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para exibir flyer -->
+    <div id="flyerModal" class="flyer-modal">
+        <div class="flyer-modal-content">
+            <span class="flyer-close">&times;</span>
+            <img id="flyerModalImg" src="" alt="Flyer do evento">
+        </div>
+    </div>
+
+    <script>
+// Sistema de animação melhorado sem piscadas
+let isPageFullyLoaded = false;
+
+// Detecta quando a página está totalmente carregada
+window.addEventListener('load', () => {
+    document.body.classList.remove('loading');
+    document.body.classList.add('loaded');
+    
+    // Aguarda um pouco para garantir que tudo carregou
+    setTimeout(() => {
+        isPageFullyLoaded = true;
+        initScrollAnimations();
+    }, 500);
+});
+
+// Sistema de animação de scroll melhorado
+function initScrollAnimations() {
+    // Seleciona elementos que devem ser animados
+    const animatedElements = document.querySelectorAll('.membro, .evento-card, .galeria-item, .contato-item');
+    
+    // Marca elementos que já estão visíveis para não animá-los
+    animatedElements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+            // Elemento já visível - não anima
+            element.classList.add('no-initial-animation');
+        } else {
+            // Elemento fora da tela - prepara para animação
+            element.classList.add('animate-on-scroll');
+            element.style.setProperty('--stagger-delay', `${index * 100}ms`);
+        }
+    });
+
+    // Observer para elementos que entram na tela
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting && isPageFullyLoaded) {
+                entry.target.classList.add('visible');
+                // Remove o observer após animar para economizar performance
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observa apenas elementos que não estão inicialmente visíveis
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        scrollObserver.observe(el);
+    });
+}
+
+// Mobile Navigation
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }));
+}
+
+// Navbar height variable
+function setNavHeightVar() {
+    const navbar = document.querySelector('.navbar');
+    const h = navbar ? navbar.offsetHeight : 80;
+    document.documentElement.style.setProperty('--nav-h', `${h}px`);
+    return h;
+}
+window.addEventListener('load', setNavHeightVar);
+window.addEventListener('resize', setNavHeightVar);
+
+// Smooth scroll with offset
+function getNavH() {
+    const v = getComputedStyle(document.documentElement).getPropertyValue('--nav-h').trim();
+    const px = parseInt(v.replace('px',''), 10);
+    return isNaN(px) ? 80 : px;
+}
+
+function scrollToWithOffset(target) {
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - (getNavH() + 10);
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        scrollToWithOffset(target);
+        setActiveLink(href);
+    });
+});
+
+// Navbar background on scroll
+function updateNavbarBg() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    if (window.scrollY > 100) {
+        navbar.style.background = 'rgba(0,0,0,0.80)';
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.style.background = 'rgba(10,10,10,0.35)';
+        navbar.classList.remove('scrolled');
+    }
+}
+window.addEventListener('scroll', updateNavbarBg);
+updateNavbarBg();
+
+// Active navigation link highlighting
+let io = null;
+const sections = Array.from(document.querySelectorAll('section[id]'));
+const links = Array.from(document.querySelectorAll('.nav-link'));
+
+function setActiveLink(hash) {
+    links.forEach(l => l.classList.remove('active'));
+    const active = links.find(l => l.getAttribute('href') === hash);
+    if (active) active.classList.add('active');
+}
+
+function initSpy() {
+    if (io) io.disconnect();
+    const navHeight = getNavH();
+    
+    io = new IntersectionObserver((entries) => {
+        let maxRatio = 0;
+        let mostVisible = null;
+        
+        entries.forEach(entry => {
+            if (entry.intersectionRatio > maxRatio) {
+                maxRatio = entry.intersectionRatio;
+                mostVisible = entry.target;
+            }
+        });
+        
+        if (mostVisible && maxRatio > 0.3) {
+            const id = mostVisible.getAttribute('id');
+            if (id) setActiveLink(`#${id}`);
+        }
+        
+        if (maxRatio < 0.3) {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top;
+                const sectionBottom = rect.bottom;
+                
+                if (sectionTop <= window.innerHeight * 0.5 && sectionBottom >= window.innerHeight * 0.5) {
+                    const id = section.getAttribute('id');
+                    if (id) setActiveLink(`#${id}`);
+                }
+            });
+        }
+    }, { 
+        root: null, 
+        threshold: [0, 0.1, 0.3, 0.5, 0.7, 1.0],
+        rootMargin: `-${navHeight}px 0px -20% 0px`
+    });
+    
+    sections.forEach(s => io.observe(s));
+}
+
+function handleScroll() {
+    const scrollPosition = window.scrollY + getNavH() + 50;
+    
+    let currentSection = sections[0];
+    
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        if (scrollPosition >= sectionTop) {
+            currentSection = section;
+        }
+    });
+    
+    if (currentSection) {
+        const id = currentSection.getAttribute('id');
+        if (id) setActiveLink(`#${id}`);
+    }
+}
+
+window.addEventListener('load', () => {
+    initSpy();
+    setActiveLink('#home');
+    
+    if (location.hash) {
+        const t = document.querySelector(location.hash);
+        if (t) setTimeout(() => scrollToWithOffset(t), 60);
+    }
+});
+
+window.addEventListener('resize', () => { 
+    setNavHeightVar(); 
+    initSpy(); 
+});
+
+window.addEventListener('scroll', throttle(handleScroll, 100), { passive: true });
+
+// Video controls enhancement
+document.querySelectorAll('video').forEach(video => {
+    video.addEventListener('click', function() {
+        if (this.paused) {
+            this.play();
+        } else {
+            this.pause();
+        }
+    });
+});
+
+// Gallery lightbox effect com suporte a swipe
+document.querySelectorAll('.galeria-img').forEach(img => {
+    img.addEventListener('click', function() {
+        const lightbox = document.createElement('div');
+        lightbox.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            cursor: pointer;
+            touch-action: none;
+        `;
+        
+        const lightboxImg = document.createElement('img');
+        lightboxImg.src = this.src;
+        lightboxImg.style.cssText = `
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+        `;
+        
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+        
+        // Prevenir scroll da página quando lightbox está aberto
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        
+        // Função para fechar o lightbox
+        function closeLightbox() {
+            if (document.body.contains(lightbox)) {
+                document.body.removeChild(lightbox);
+                document.body.style.overflow = originalOverflow;
+                document.removeEventListener('keydown', handleKeydown);
+            }
+        }
+        
+        // Variáveis para detecção de swipe
+        let startX = 0;
+        let startY = 0;
+        let startTime = 0;
+        
+        // Detectar início do toque
+        lightbox.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevenir comportamentos padrão
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startTime = Date.now();
+        }, { passive: false });
+        
+        // Detectar movimento do toque
+        lightbox.addEventListener('touchmove', function(e) {
+            e.preventDefault(); // Prevenir scroll
+        }, { passive: false });
+        
+        // Detectar fim do toque (swipe)
+        lightbox.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            
+            if (e.changedTouches.length === 0) return;
+            
+            const touch = e.changedTouches[0];
+            const endX = touch.clientX;
+            const endY = touch.clientY;
+            const endTime = Date.now();
+            
+            const deltaX = Math.abs(endX - startX);
+            const deltaY = Math.abs(endY - startY);
+            const deltaTime = endTime - startTime;
+            
+            // Detectar swipe: movimento > 50px em qualquer direção em menos de 300ms
+            // OU tap simples (movimento mínimo)
+            const isSwipe = (deltaX > 50 || deltaY > 50) && deltaTime < 300;
+            const isTap = deltaX < 10 && deltaY < 10 && deltaTime < 300;
+            
+            if (isSwipe || isTap) {
+                closeLightbox();
+            }
+        }, { passive: false });
+        
+        // Close modal on click (para desktop)
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Close modal on escape key
+        function handleKeydown(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        }
+        
+        document.addEventListener('keydown', handleKeydown);
+    });
+});
+
+// Flyer Modal functionality
+function openFlyerModal(imageSrc) {
+    const modal = document.getElementById('flyerModal');
+    const modalImg = document.getElementById('flyerModalImg');
+    
+    modalImg.src = imageSrc;
+    modal.style.display = 'block';
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    document.addEventListener('keydown', function closeModal(e) {
+        if (e.key === 'Escape') {
+            modal.style.display = 'none';
+            document.removeEventListener('keydown', closeModal);
+        }
+    });
+}
+
+// Close modal when clicking on X
+document.addEventListener('DOMContentLoaded', function() {
+    const closeBtn = document.querySelector('.flyer-close');
+    const modal = document.getElementById('flyerModal');
+    
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+});
+
+// Performance optimization: Throttle scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+console.log('🎸 Rota 99 - Site carregado com sucesso! 🎸');
+    </script>
+
+</body>
+</html>
